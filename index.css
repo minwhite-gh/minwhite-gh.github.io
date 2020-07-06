@@ -1,9 +1,16 @@
-body h1 {
+a {
+  text-decoration: none;
+  color: #000;
+}
+body h3 {
   text-align: center;
 }
-body h1 img {
+body h3 img {
   width: 400px;
-  height: 400px;
+  height: auto;
   display: block;
   margin: 0 auto;
+}
+body h3 img:hover {
+  border: 1px solid lightgreen;
 }

@@ -1,16 +1,16 @@
 a {
-  text-decoration: none;
+  text-decoration: none !important;
   color: #000;
 }
 body h3 {
   text-align: center;
 }
-body h3 img {
-  width: 400px;
-  height: auto;
-  display: block;
-  margin: 0 auto;
+body .container .row {
+  text-align: center;
 }
-body h3 img:hover {
+body .container .row img {
+  width: 100%;
+}
+body .container .row img:hover {
   border: 1px solid lightgreen;
 }

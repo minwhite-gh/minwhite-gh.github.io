@@ -250,16 +250,16 @@ header.fixed {
     padding: 0 3%;
 }
 
-.techo-more {
+/* .techo-more {
     margin: 60px 0 100px 0;
     text-align: center;
-}
+} */
 
 .techo .imggif img {
     max-width: 100%;
 }
 
-.techo-more a {
+/* .techo-more a {
     margin: 0 auto;
     width: 120px;
     height: 40px;
@@ -272,10 +272,10 @@ header.fixed {
     transition: .3s;
     position: relative;
     box-sizing: border-box;
-}
+} */
 
 
-.techo-more a span {
+/* .techo-more a span {
     color: #fff;
     font-size: 12px;
     position: relative;
@@ -289,7 +289,7 @@ header.fixed {
 .techo-more a:hover span {
     color: #ef8200;
 
-}
+} */
 
 /* 广告说明 end*/
 
@@ -502,12 +502,12 @@ header.fixed {
 }
 
 /* more begin*/
-.cplbt-more {
+.more {
     margin: 60px 0;
     text-align: center;
 }
 
-.cplbt-more a {
+.more a {
     margin: 0 auto;
     width: 120px;
     height: 40px;
@@ -517,46 +517,43 @@ header.fixed {
     background-color: #ef8200;
     border: 1px solid #ef8200;
     border-radius: 3px;
-    transition: .3s;
+    /* transition: .3s; */
     position: relative;
     box-sizing: border-box;
+    overflow: hidden;
 }
 
-
-.cplbt-more a span {
+.more a span {
     color: #fff;
     font-size: 12px;
     position: relative;
     z-index: 1;
 }
-
-.cplbt-more a:hover {
-    background-color: #fff;
-}
-
-.cplbt-more a:hover span {
+.more a:hover span {
     color: #ef8200;
-
 }
 
-/* .cplbt-more a i.mb {
-    width: 1px;
-    height: 1px;
+.more a i.mb {
+    width: 2px;
+    height: 2px;
     position: absolute;
-    left: -1px;
-    top: -1px;
-    transition: all 1s;
-    background-color: red;
+    left: 0;
+    top: 0;
+    transition: transform 1s, opacity 1s;
+    background-color: #FFF;
     opacity: 0;
     border-radius: 50%;
     z-index: 0;
+    transform: scale(0);
+    pointer-events: none;
+    display: block;
 }
 
-.cplbt-more a i.mb.active {
-    width: 260px;
-    height: 260px;
+.more a:hover i.mb {
+    transform: scale(170);
     opacity: 1;
-} */
+}
+
 
 /* more end*/
 /* 理念轮播图begin */
@@ -657,7 +654,7 @@ header.fixed {
 
 .lnlbt .lnlbt-row .lnlbt-row-text .lnlbt-more a:hover span {
     color: #ef8200;
-}
+} 
 
 
 
@@ -778,72 +775,88 @@ header.fixed {
     .header-ri-xs .glyphicon.glyphicon-menu-down {
         margin-top: 15px;
     }
-    .tabgg-tab-box{
+
+    .tabgg-tab-box {
         text-align: center;
     }
+
     .tabgg .tabgg-tab i.tabicon {
         width: 50px;
         height: 50px;
     }
+
     .tabgg .tabgg-tab .tabggtext p {
         font-size: 14px;
     }
+
     .tabgg .tabgg-tab .tabggtext span {
         font-size: 12px;
     }
+
     .carousel-indicators {
         bottom: -33px;
     }
+
     .cplbt-more a,
     .techo-more a {
         width: 90px;
         height: 34px;
         line-height: 34px;
     }
+
     /* 理念按钮 */
     #lnlbt-carousel-example-generic ol.carousel-indicators {
         bottom: 88%;
         left: 35%;
     }
+
     #lnlbtright-carousel-example-generic .Indicatorsol {
         left: 50%;
     }
+
     .lnlbt .lnlbt-row-left-box .lnlbt-row-text h1 {
         font-size: 20px;
         text-align: center;
     }
+
     .lnlbt .lnlbt-row .lnlbt-row-text .lnlbt-more a {
         width: 90px;
         height: 34px;
         line-height: 34px;
     }
+
     .lnlbt .lnlbt-row .lnlbt-row-text .lnlbt-more {
         text-align: center;
         margin-bottom: 60px;
     }
+
     /* // */
     .techo h2 {
         font-size: 20px;
     }
+
     .techo p {
         padding: 0 3%;
         text-align: left;
         color: #666;
     }
+
     /* // */
     .videobox .sur {
         background-size: 40px;
         background-repeat: no-repeat;
     }
 }
-@media screen and  (min-width:768px) and (max-width:1200px){
-    .lnlbt-row .lnlbt-row-left .carousel{
+
+@media screen and (min-width:768px) and (max-width:1200px) {
+    .lnlbt-row .lnlbt-row-left .carousel {
         margin-bottom: 120px;
     }
+
     #lnlbtright-carousel-example-generic .Indicatorsol {
         left: 50%;
         bottom: 2%;
     }
-    #lnlbt-carousel-example-generic ol.carousel-indicators {
-    }
+
+    #lnlbt-carousel-example-generic ol.carousel-indicators {}
 }

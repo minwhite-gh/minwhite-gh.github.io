@@ -38,16 +38,13 @@ $(".header-ri ul li").hover(function () {
     $(this).removeClass("curactive")
 })
 //more触摸效果
-// $(".cplbt-more a").mouseenter(function (event) {
-//     console.log(event.offsetX,event.offsetY)
-//     $(this).children("i").css({
-//         left:event.offsetX-130,
-//         top:event.offsetY-130
-//     }).addClass("active")
-// });
-// $(".cplbt-more a").mouseleave(function () {
-//     $(this).children("i").removeClass("active")
-// });
+$(".more a").mouseenter(function (event) {
+    console.log(event.offsetX,event.offsetY)
+    $(this).children("i").css({
+        left:event.offsetX-1+"px",
+        top:event.offsetY-1+"px"
+    })
+});
 
 // 轮播图调用函数
 $("#lbt-carousel-example-generic carousel").carousel()

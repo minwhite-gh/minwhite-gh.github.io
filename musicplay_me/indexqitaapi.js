@@ -23,7 +23,12 @@ var musicjson = [{
     playSrc: "https://music.163.com/song/media/outer/url?id=277302.mp3",
 
 }];
-
+// 初始化按钮
+// if (audio.paused) {
+//     stopbtn.classList.remove("activestop")
+// } else {
+//     stopbtn.classList.add("activestop")
+// }
 
 var bottomboxlist = document.querySelector(".bottombox .list");
 var imgbox = document.querySelector(".imgbox");
@@ -31,11 +36,6 @@ var img = document.querySelector(".imgbox img")
 var mask = document.querySelector(".mask")
 var texth3 = document.querySelector(".textbox h3")
 var textp = document.querySelector(".textbox p")
-var vlistli = document.querySelectorAll(".bottombox .list li")
-
-var stopbtn = document.querySelector(".stop")
-
-// 初始化创建
 createfun(musicjson);
 function createfun(musicjson) {
     bottomboxlist.innerHTML = ""
@@ -47,6 +47,7 @@ function createfun(musicjson) {
         node.dataset.liid = index;
         node.appendChild(icon)
         console.log(node)
+        // console.log(node.dataset.liid)
         bottomboxlist.appendChild(node);
 
         node.addEventListener("click", function () {
@@ -60,27 +61,19 @@ function createfun(musicjson) {
             //设置歌曲名字与作者
             texth3.innerText = musicjson[songliid].name
             textp.innerText = musicjson[songliid].artists
-            playbox.classList.add("active")
-            stopbtn.classList.add("activestop")
-            audio.play()
+
         })
 
     })
-    // 初始化li的activ
-    listli = document.querySelectorAll(".bottombox .list li")
-    liclick(listli);
-
 }
 
-
-
+var listli = document.querySelectorAll(".bottombox .list li")
 var icon = document.querySelectorAll(".bottombox .list li i")
 var audio = document.querySelector("audio");
 var progress = document.querySelector(".progress input");
 var nowTime = document.querySelector(".nowTime");
 var totalTime = document.querySelector(".totalTime");
 var slider = document.querySelector(".slider");
-
 //封装时间转换函数
 function time(item) {
     var m = Math.floor(item / 60)
@@ -98,24 +91,18 @@ function time(item) {
     return m + ":" + s
 }
 
-
-
-// li的点击事件active
-function liclick(listli) {
-    for (var i = 0; i < listli.length; i++) {
-        console.log(listli)
-        listli[0].classList.add("active")
-        listli[i].onclick = function () {
-            var activeid = this.dataset.liid
-            console.log("id", this.dataset.id)
-            for (var i = 0; i < listli.length; i++) {
-                listli[i].classList.remove("active")
-            }
-            listli[activeid].classList.add("active");
+// li的点击事件
+for (var i = 0; i < listli.length; i++) {
+    listli[0].classList.add("active")
+    listli[i].onclick = function () {
+        var activeid = this.dataset.liid
+        console.log("id", this.dataset.id)
+        for (var i = 0; i < listli.length; i++) {
+            listli[i].classList.remove("active")
         }
+        listli[activeid].classList.add("active");
     }
 }
-
 
 // 获取音频总时长
 audio.addEventListener("durationchange", function () {
@@ -132,6 +119,7 @@ audio.addEventListener("durationchange", function () {
 // 改变原进度条现进度条改变
 var inp = document.querySelector("input");
 audio.addEventListener("timeupdate", function () {
+
     progress.value = audio.currentTime;
     slider.style.width = audio.currentTime / audio.duration * 100 + "%";
 
@@ -140,7 +128,6 @@ audio.addEventListener("timeupdate", function () {
 
     // 列表循环
     var lbnum = 0;
-    listli = document.querySelectorAll(".bottombox .list li")
     if (playlist.className == "playlist playlb") {
         listli.forEach(function (index) {
             if (index.className == "active") {
@@ -205,7 +192,6 @@ stopbtn.onclick = function () {
 }
 //封装切换歌曲函数
 function cutsong(num) {
-    listli = document.querySelectorAll(".bottombox .list li")
     audio.src = "https://music.163.com/song/media/outer/url?id=" + musicjson[num].id + ".mp3"
     img.setAttribute("src", musicjson[num].picUrl)
     mask.style.backgroundImage = "url('" + musicjson[num].picUrl + "')"
@@ -228,7 +214,6 @@ function cutsong(num) {
 // 设置上一曲
 var runningnum = 0;
 prevbtn.onclick = function () {
-    listli = document.querySelectorAll(".bottombox .list li")
     if (playlist.className == "playlist playsj") {
         index = Math.floor(Math.random() * musicjson.length);
         cutsong(index)
@@ -238,7 +223,7 @@ prevbtn.onclick = function () {
                 runningnum = index.dataset.liid
             }
         })
-        runningnum = runningnum > 0 ? --runningnum : listli.length-1;
+        runningnum = runningnum > 0 ? --runningnum : 2;
         // 调用切歌函数
         cutsong(runningnum)
     } else if (playlist.className == "playlist playone") {
@@ -253,7 +238,6 @@ prevbtn.onclick = function () {
 }
 // 设置下一曲
 nextbtn.onclick = function () {
-    listli = document.querySelectorAll(".bottombox .list li")
     if (playlist.className == "playlist playsj") {
         index = Math.floor(Math.random() * musicjson.length);
         console.log("aa", index)
@@ -318,7 +302,7 @@ sound.onclick = function () {
         soundnum = true;
     }
 }
-// 声音样式
+
 var sliderboxwidth = voicebtnsliderbox.offsetWidth;
 voicebtn.addEventListener("input", function () {
     audio.volume = this.value / 100;
@@ -330,6 +314,7 @@ voicebtn.addEventListener("input", function () {
         voicebtnslideri.style.width = 6 + "px";
     }
 })
+// console.log(voicebtninput)
 voicebtninput.onmouseenter = function () {
     voicebtnslideri.style.backgroundColor = "#fff"
 }
@@ -344,71 +329,53 @@ var searchlist = document.querySelector(".search .list");
 var inp = document.querySelector(".search input");
 console.log(btn, searchlist)
 btn.onclick = function (e) {
-    searchlist.innerHTML = "";
     $.ajax({
-        url: "http://music.kele8.cn/search",
+        url: "https://v1.alapi.cn/api/music/search",
         data: {
-            keywords: inp.value,
+            keyword: inp.value,
         },
         method: "GET",
 
         success: function (data) {
-           
-            var arr = [];
-            arr.push(data.result.songs.splice(10, 10));
-            arr[0].forEach(function (element, index) {
+            var datas = data.data.songs
+            console.log("data",datas)
+            searchlist.innerHTML = "";
+            // var arr = [];
+            // arr.push(data.result.songs.splice(0, 10));
+            // console.log("arr",arr[0][1].artists[0].name)
+            datas.forEach(function (element, index) {
 
                 var node2 = document.createElement("li");
-                node2.dataset.songid = element.id
+                node2.innerHTML = "<div class='bkimg'><div class='imgbox'><img src=" +
+                    element.album.artist.img1v1Url +
+                    "></div><p class='name'>" + element.name + "</p><p class='singer'>" + element.album.name + "</p></div>"
                 node2.dataset.ids = index;
-
-                $.ajax({
-                    url: "https://v1.alapi.cn/api/music/detail",
-                    data: {
-                        id: node2.dataset.songid,
-                    },
-                    method: "GET",
-                    success: function (data) {
-                        node2.innerHTML = "<div class='bkimg'><div class='imgbox'><img src=" +
-                            data.data.songs[0].al.picUrl + "></div><p class='name'>" + element.name + "</p><p class='singer'>" + element.artists[0].name + "</p></div>"
-                    }
-                });
-
                 searchlist.appendChild(node2);
 
-                var create = {
-                    id: "",
-                    name: "",
-                    artists: "",
-                    picUrl: "",
-                    playSrc: "",
-                };
+
+
 
                 node2.addEventListener("click", function () {
-                    // var lilili = document.querySelectorAll(".bottombox .list li")
-                    // console.log("lilili",lilili)
-                    // liclick();
-                    $.ajax({
-                        url: "https://v1.alapi.cn/api/music/detail",
-                        data: {
-                            id: this.dataset.songid,
-                        },
-                        method: "GET",
-                        success: function (data) {
-                            console.log(data)
-                            create.picUrl = data.data.songs[0].al.picUrl
-                        }
-                    });
-
-                    // console.log("id", arr[0][this.dataset.ids].id)
-                    create.id = arr[0][this.dataset.ids].id,
-                        create.name = arr[0][this.dataset.ids].name,
-                        create.artists = arr[0][this.dataset.ids].artists[0].name,
-                        create.playSrc = "https://music.163.com/song/media/outer/url?id=" + arr[0][this.dataset.ids].id + ".mp3"
+                    console.log("ids",this.dataset.ids)
+                    var create = {
+                        id: "",
+                        name: "",
+                        artists: "",
+                        picUrl: "",
+                        playSrc: "",
+                    };
+                    create.id = datas[this.dataset.ids].album.id,
+                        create.name = datas[this.dataset.ids].name,
+                        create.artists = datas[this.dataset.ids].artists[0].name,
+                        create.picUrl = datas[this.dataset.ids].artists[0].img1v1Url,
+                        create.playSrc = "https://music.163.com/song/media/outer/url?id=" + datas[this.dataset.ids].album.id + ".mp3"
 
                     musicjson.push(create)
+                    // audio.src = "https://music.163.com/song/media/outer/url?id=" + datas[this.dataset.id].album.id + ".mp3"
                     createfun(musicjson)
+                console.log(musicjson)
                 })
+                console.log(musicjson)
             })
 
         },

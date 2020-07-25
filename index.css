@@ -1,3 +1,6 @@
+html {
+  font-size: 10px;
+}
 a {
   text-decoration: none !important;
   color: #000;
@@ -18,21 +21,30 @@ body {
 body h3 {
   text-align: center;
 }
-body .container .row {
+body .box {
+  margin-bottom: 10rem;
+}
+body .box .container .row {
   text-align: center;
 }
-body .container .row div a {
+body .box .container .row div {
+  height: 15rem;
+}
+body .box .container .row div a {
   width: 100%;
   height: 100%;
   display: block;
 }
-body .container .row p {
-  padding: 20px 0px;
+body .box .container .row p {
+  padding: 2rem 0;
   border-bottom: 1px solid black;
-  font-size: 22px;
+  font-size: 2.2rem;
 }
-body .container .row img {
+body .box .container .row img {
   width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
   display: block;
 }
 @-webkit-keyframes bganimation {

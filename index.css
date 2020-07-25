@@ -2,15 +2,81 @@ a {
   text-decoration: none !important;
   color: #000;
 }
+body {
+  height: 100%;
+  background-image: -webkit-linear-gradient(325deg, #44cef6, #0eb83a, #a172e3, #dd57a5);
+  background-image: -moz- oldlinear-gradient(325deg, #44cef6, #0eb83a, #a172e3, #dd57a5);
+  background-image: -o-linear-gradient(325deg, #44cef6, #0eb83a, #a172e3, #dd57a5);
+  background-image: linear-gradient(125deg, #44cef6, #0eb83a, #a172e3, #dd57a5);
+  -moz-background-size: 400%;
+       background-size: 400%;
+  -webkit-animation: bganimation 15s infinite;
+     -moz-animation: bganimation 15s infinite;
+       -o-animation: bganimation 15s infinite;
+          animation: bganimation 15s infinite;
+}
 body h3 {
   text-align: center;
 }
 body .container .row {
   text-align: center;
 }
+body .container .row div a {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+body .container .row p {
+  padding: 20px 0px;
+  border-bottom: 1px solid black;
+  font-size: 22px;
+}
 body .container .row img {
   width: 100%;
+  display: block;
 }
-body .container .row img:hover {
-  border: 1px solid lightgreen;
+@-webkit-keyframes bganimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
+@-moz-keyframes bganimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+@-o-keyframes bganimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+@keyframes bganimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+/*# sourceMappingURL=./index.css.map */

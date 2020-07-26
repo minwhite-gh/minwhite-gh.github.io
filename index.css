@@ -5,19 +5,6 @@ a {
   text-decoration: none !important;
   color: #000;
 }
-body {
-  height: 100%;
-  background-image: -webkit-linear-gradient(325deg, #44cef6, #0eb83a, #a172e3, #dd57a5);
-  background-image: -moz- oldlinear-gradient(325deg, #44cef6, #0eb83a, #a172e3, #dd57a5);
-  background-image: -o-linear-gradient(325deg, #44cef6, #0eb83a, #a172e3, #dd57a5);
-  background-image: linear-gradient(125deg, #44cef6, #0eb83a, #a172e3, #dd57a5);
-  -moz-background-size: 400%;
-       background-size: 400%;
-  -webkit-animation: bganimation 15s infinite;
-     -moz-animation: bganimation 15s infinite;
-       -o-animation: bganimation 15s infinite;
-          animation: bganimation 15s infinite;
-}
 body h3 {
   text-align: center;
 }

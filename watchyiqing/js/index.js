@@ -61,7 +61,7 @@ window.onload = function() {
     let befoday = address.getBeforeFormatDate()
         // console.log(day)
         // 获取国内总疫情6个方格
-    address.get("http://api.tianapi.com/txapi/ncov/index?key=28aad7226be0978a3a393fb8bbc568d8&date=" + day).then(result => {
+    address.get("https://api.tianapi.com/txapi/ncov/index?key=28aad7226be0978a3a393fb8bbc568d8&date=" + day).then(result => {
             result = JSON.parse(result);
             ////赋值
             diagnosisnum.innerText = result.newslist[0].desc.confirmedCount
@@ -86,7 +86,7 @@ window.onload = function() {
 
         })
         // 获取各省疫情
-    address.get("http://api.tianapi.com/txapi/ncovcity/index?key=28aad7226be0978a3a393fb8bbc568d8&date=" + day).then(result => {
+    address.get("https://api.tianapi.com/txapi/ncovcity/index?key=28aad7226be0978a3a393fb8bbc568d8&date=" + day).then(result => {
             result = JSON.parse(result);
             // console.log("各省：", result.newslist)
             let zhon = 0;
@@ -176,7 +176,7 @@ window.onload = function() {
             // console.log(fragment)
         })
         // 获取海外
-    address.get("http://api.tianapi.com/txapi/ncovabroad/index?key=28aad7226be0978a3a393fb8bbc568d8&date=" + day).then(result => {
+    address.get("https://api.tianapi.com/txapi/ncovabroad/index?key=28aad7226be0978a3a393fb8bbc568d8&date=" + day).then(result => {
         result = JSON.parse(result);
 
         let ggz = [];
@@ -267,7 +267,7 @@ window.onload = function() {
     let globalinputnum = address.query(".globalbox .inputnum")[0]
     let globalSuspectednum = address.query(".globalbox .Suspectednum")[0]
     let globalilist = address.query(".globalbox .domestictable i")
-    address.get("http://api.tianapi.com/txapi/ncovabroad/index?key=28aad7226be0978a3a393fb8bbc568d8&date=" + day).then(result => {
+    address.get("https://api.tianapi.com/txapi/ncovabroad/index?key=28aad7226be0978a3a393fb8bbc568d8&date=" + day).then(result => {
         result = JSON.parse(result);
         console.log("海外：", result.newslist);
 
@@ -314,7 +314,7 @@ window.onload = function() {
         // 获取前一天的数据 排名前四国家的数据
         let beforefourlist = ""
             // let dataarr = []
-        address.get("http://api.tianapi.com/txapi/ncovabroad/index?key=28aad7226be0978a3a393fb8bbc568d8&date=" + befoday).then(result => {
+        address.get("https://api.tianapi.com/txapi/ncovabroad/index?key=28aad7226be0978a3a393fb8bbc568d8&date=" + befoday).then(result => {
             result = JSON.parse(result);
             console.log("result=>", result)
             let beforexyqz = 0;

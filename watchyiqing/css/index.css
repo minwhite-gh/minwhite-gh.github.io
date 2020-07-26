@@ -93,10 +93,10 @@ li {
 .bodybox .tab-content .gnbox .domestictable .domestic-table1 div span,
 .bodybox .tab-content .gnbox .domestictable .domestic-table2 div span {
   color: #cecece;
-  font-size: 0.1rem;
 }
 .bodybox .tab-content .gnbox .domestictable .domestic-table1 div span i,
 .bodybox .tab-content .gnbox .domestictable .domestic-table2 div span i {
+  font-size: 1rem;
   font-style: normal;
 }
 .bodybox .tab-content .gnbox .domestictable .domestic-table1 div:nth-of-type(1) strong {
@@ -526,7 +526,7 @@ li {
 .bodybox .tab-content .globalbox .domestictable .domestic-table1 div span i,
 .bodybox .tab-content .globalbox .domestictable .domestic-table2 div span i {
   font-style: normal;
-  font-size: 0.1rem;
+  font-size: 0.5rem;
 }
 .bodybox .tab-content .globalbox .domestictable .domestic-table1 div:nth-of-type(1) strong {
   color: #cb4001;

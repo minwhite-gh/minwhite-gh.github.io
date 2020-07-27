@@ -58,31 +58,47 @@ window.onload = function() {
         // console.log(i)
 
     let day = address.getNowFormatDate()
-    let befoday = address.getBeforeFormatDate()
+    let befoeday = address.getBeforeFormatDate()
+    console.log("befoeday", befoeday)
         // console.log(day)
         // 获取国内总疫情6个方格
     address.get("https://api.tianapi.com/txapi/ncov/index?key=28aad7226be0978a3a393fb8bbc568d8&date=" + day).then(result => {
             result = JSON.parse(result);
-            ////赋值
+            console.log("result国内总疫情6个方格", result)
+                ////赋值
             diagnosisnum.innerText = result.newslist[0].desc.confirmedCount
             curenum.innerText = result.newslist[0].desc.curedCount
             deathnum.innerText = result.newslist[0].desc.deadCount
             existingnum.innerText = result.newslist[0].desc.currentConfirmedCount
             inputnum.innerText = result.newslist[0].desc.suspectedCount
-            Suspectednum.innerText = result.newslist[0].desc.suspectedCount
-                // 获取较上日所有数据
-            var data1 = result.newslist[0].desc.confirmedIncr
-            var data2 = result.newslist[0].desc.curedIncr
-            var data3 = result.newslist[0].desc.deadIncr
-            var data4 = result.newslist[0].desc.currentConfirmedIncr
-            var data5 = result.newslist[0].desc.suspectedIncr
-            var data6 = result.newslist[0].desc.suspectedIncr //无现有疑似
-            var iarray = Array.from(ilist)
-            let dataarray = Array.of(data1, data2, data3, data4, data5, data6)
-                // console.log("dataarray=>", dataarray)
-            for (let i = 0; i < iarray.length; i++) {
-                iarray[i].innerText = "+" + dataarray[i]
-            }
+            Suspectednum.innerText = result.newslist[0].desc.suspectedCount //无现有疑似
+            address.get("https://api.tianapi.com/txapi/ncov/index?key=28aad7226be0978a3a393fb8bbc568d8&date=" + befoeday).then(beforeresult => {
+                beforeresult = JSON.parse(beforeresult);
+                // console.log("beforeresult,result", beforeresult, result)
+                console.log("比较", result.newslist[0].desc.curedCount, beforeresult.newslist[0].desc.curedCount)
+                    // 获取较上日所有数据
+                var data1 = result.newslist[0].desc.confirmedCount - beforeresult.newslist[0].desc.confirmedCount
+                var data2 = result.newslist[0].desc.curedCount - beforeresult.newslist[0].desc.curedCount
+                var data3 = result.newslist[0].desc.deadCount - beforeresult.newslist[0].desc.deadCount
+                var data4 = result.newslist[0].desc.currentConfirmedCount - beforeresult.newslist[0].desc.currentConfirmedCount
+                var data5 = result.newslist[0].desc.suspectedCount - beforeresult.newslist[0].desc.suspectedCount
+                var data6 = result.newslist[0].desc.suspectedCount - beforeresult.newslist[0].desc.suspectedCount
+                var iarray = Array.from(ilist)
+                let dataarray = Array.of(data1, data2, data3, data4, data5, data6)
+                console.log("dataarray=>", dataarray)
+                for (let i = 0; i < iarray.length; i++) {
+                    // // console.log("toString[i]", String(dataarray[i]))
+                    // console.log("dataarray[i].indexOf(" - ")", )
+                    //     // if ()
+                    if (String(dataarray[i]).indexOf("-") == 0) {
+                        iarray[i].innerText = dataarray[i]
+                    } else {
+
+                        iarray[i].innerText = "+" + dataarray[i]
+                    }
+                }
+            })
+
 
         })
         // 获取各省疫情
@@ -314,7 +330,7 @@ window.onload = function() {
         // 获取前一天的数据 排名前四国家的数据
         let beforefourlist = ""
             // let dataarr = []
-        address.get("https://api.tianapi.com/txapi/ncovabroad/index?key=28aad7226be0978a3a393fb8bbc568d8&date=" + befoday).then(result => {
+        address.get("https://api.tianapi.com/txapi/ncovabroad/index?key=28aad7226be0978a3a393fb8bbc568d8&date=" + befoeday).then(result => {
             result = JSON.parse(result);
             console.log("result=>", result)
             let beforexyqz = 0;
@@ -336,8 +352,15 @@ window.onload = function() {
 
             let globalilistarray = Array.from(globalilist);
             let globaldataarray = Array.of(xyqz - beforexyqz, ljqz - beforeljqz, del - beforedel, zyu - beforezyu)
+
+
             for (let i = 0; i < globalilistarray.length; i++) {
-                globalilistarray[i].innerText = "+" + globaldataarray[i]
+                if (String(globalilistarray[i]).indexOf("-") == 0) {
+                    globaldataarray[i].innerText = globalilistarray[i]
+                } else {
+
+                    globaldataarray[i].innerText = "+" + globalilistarray[i]
+                }
             }
 
 
@@ -352,8 +375,8 @@ window.onload = function() {
                 // 前一天的前四个国家的数据
             beforefourlist = result.newslist.slice(0, 4)
 
-            console.log("beforefourlist", beforefourlist)
-            console.log("fourlist", fourlist)
+            // console.log("beforefourlist", beforefourlist)
+            // console.log("fourlist", fourlist)
 
             for (ii in fourlist) {
                 newdatass += `

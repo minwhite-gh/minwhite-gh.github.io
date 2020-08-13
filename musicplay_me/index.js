@@ -346,7 +346,7 @@ console.log(btn, searchlist)
 btn.onclick = function (e) {
     searchlist.innerHTML = "";
     $.ajax({
-        url: "http://music.kele8.cn/search",
+        url: "https://music.kele8.cn/search",
         data: {
             keywords: inp.value,
         },
